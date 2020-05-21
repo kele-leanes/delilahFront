@@ -1,8 +1,20 @@
 const carrousel = document.querySelector('.carrousel');
 const productContainer = document.querySelector('.product-container');
 const cartQty = document.querySelector('.cart-qty');
+const cartBtn = document.querySelector('.cart');
+const cartCard = document.querySelector('.cartCard');
+
+cartBtn.addEventListener('click', openCart);
 
 let cart = []
+
+function openCart(){
+    cartCard.classList.toggle('shown');
+}
+
+function showProductsCart(){
+    
+}
 
 getFavorites()
 getProducts()
@@ -19,8 +31,7 @@ async function getFavorites() {
         <div class="action-wrapper">
             <div class='product-price'>$${product.price}</div>
             <div class='add-favorite-btn' data-id="${product.product_id}" onclick="addProductToCart()">AÑADIR</div>
-        </div>`))
-    
+        </div>`))       
 }
 
 async function getProducts() {
@@ -44,14 +55,35 @@ async function getProducts() {
     
 }
 
+async function getProductById(id){
+    const products = await fetch(`https://delilah-resto-acamica.herokuapp.com/productos/${id}`)
+    .then(response => response.json())
+    .then(data => data.map(product => cartCard.innerHTML +=
+        `<div class="product-list">
+            <div class="product">
+                <div class="left-column">
+                    <div class="img-product">
+                        <img src="${product.image_url}" alt="">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">${product.product_name}</div>
+                        <div class="product-price">$${product.price}</div>
+                    </div>
+                </div>    
+                <div class="add-product-btn" data-id="${product.product_id}" onclick="removeProductFromCart()">-</div>
+            </div>
+        </div>`))
+}
+
 function addProductToCart(){
     const productId = event.target.dataset.id;
-    let productAdded = {
-        product_id: parseInt(productId),
-        product_qty: 1
-    }
+    let productAdded = parseInt(productId);
     cart.push(productAdded);
     cartQty.classList.add('shown')
     cartQty.innerHTML = cart.length;
-    console.log(cart)
+    getProductById(productId)
+}
+
+function removeProductFromCart() {
+    
 }

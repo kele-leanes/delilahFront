@@ -198,3 +198,25 @@ label {
 .cart-qty.shown {
     display: block;
 }
+
+.cartCard {
+    display: none;
+    top: 60px;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 95%;
+    min-height: 200px;
+    z-index: 999;
+    padding: 15px;
+}
+
+.cartCard.shown {
+    display: block;
+}
+
+.cartCard .body-title {
+    text-align: center;
+    color:gray;
+
+}
