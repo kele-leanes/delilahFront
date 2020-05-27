@@ -134,6 +134,7 @@ header {
 
 .product-price {
     font-size: 14px;
+    color: grey;
 }
 
 .login-form {
@@ -330,4 +331,9 @@ label {
 .side-menu header {
     display: flex;
     justify-content: space-between;
+}
+
+.cart-total {
+    color: black;
+    margin: 15px 0px;
 }

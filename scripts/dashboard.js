@@ -105,11 +105,12 @@ function loadProduct(){
         <input type="text" id="product_name" placeholder="Nombre del producto"/>
         <input type="number" id="price" placeholder="Precio"/>
         <input type="text" id="image_url" placeholder="Url de la imagen"/>
-        <p class="body-title">Es favorito</p>
-        <label for="true">Si</label>
-        <input type="radio" id="true" name="is_favorite" value="true">
-        <label for="false">No</label>
-        <input type="radio" id="false" name="is_favorite" value="false">
+        <div class="favorite">
+                <select name="is-favorite" id="is-favorite">
+                    <option value="true">Si</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
     </div> 
     <div class="btn-wrapper">
         <div class="btn-primary" onclick="postProduct()">AGREGAR PRODUCTO</div>
