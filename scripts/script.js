@@ -6,14 +6,20 @@ const cartCard = document.querySelector('.cartCard');
 
 cartBtn.addEventListener('click', openCart);
 
-let cart = []
+let cartProducts = [];
+let productIds = [];
 
 function openCart(){
     cartCard.classList.toggle('shown');
 }
 
 function showProductsCart(){
-    
+    cartCard.innerHTML = '';
+    if(productIds.length){
+        productIds.forEach(ids=>getProductById(ids));
+    } else {
+        cartCard.innerHTML = '<div class="body-title">El carrito está vacío</div>';
+    }    
 }
 
 getFavorites()
@@ -78,12 +84,15 @@ async function getProductById(id){
 function addProductToCart(){
     const productId = event.target.dataset.id;
     let productAdded = parseInt(productId);
-    cart.push(productAdded);
     cartQty.classList.add('shown')
-    cartQty.innerHTML = cart.length;
-    getProductById(productId)
+    productIds.push(productAdded);
+    cartQty.innerHTML = productIds.length;
+    showProductsCart();
 }
 
 function removeProductFromCart() {
-    
+    const index = productIds.indexOf(+event.target.dataset.id);
+    productIds.splice(index, 1);
+    cartQty.innerHTML = productIds.length;
+    showProductsCart();
 }

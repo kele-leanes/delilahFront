@@ -6,6 +6,7 @@
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: grey;
+    position: relative;
 }
 
 header {
@@ -18,6 +19,7 @@ header {
     align-items: center;
     margin-bottom: 10px;
     position: relative;
+    padding: 0 15px;
 }
 
 .main-container {
@@ -165,11 +167,13 @@ label {
     border-radius: 90px;
     line-height: 40px;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .btn-secundary {
     color: rgb(249,114,74);
     font-size: 14px;
+    cursor: pointer;
 }
 
 .cart {
@@ -219,4 +223,106 @@ label {
     text-align: center;
     color:gray;
 
+}
+
+
+.order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    font-size: 12px;
+    padding: 0 15px;
+}
+
+.order:nth-child(even) {
+    background-color: rgb(246,246,250);
+}
+
+.order-field {
+    width: 180px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.order-field:last-child {
+    width: 50px;
+    cursor: pointer;
+}
+
+.order-field:first-child {
+    color: white;
+    height: 20px;
+    width: 100px;
+    border-radius: 50px;
+}
+
+.header-dashboard {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-header {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.date {
+    font-size: 12px;
+    line-height: 24px;
+}
+
+.nav-wrapper {
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-btn {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nav-wrapper .btn-primary {
+    font-size: 12px;
+    width: 160px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.side-menu {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    z-index: 99;
+}
+
+.product-details {
+    background-color: white;
+    width: 40%;
+    
+}
+
+.blur-container {
+    width: 60%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.side-menu .product-container {
+    padding: 5px 15px;
+}
+
+.side-menu.shown {
+    display: flex;
+}
+
+.side-menu header {
+    display: flex;
+    justify-content: space-between;
 }
