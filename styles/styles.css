@@ -3,6 +3,14 @@
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: grey;
@@ -252,7 +260,6 @@ label {
 }
 
 .order-field:first-child {
-    color: white;
     height: 20px;
     width: 100px;
     border-radius: 50px;
@@ -297,7 +304,6 @@ label {
     position: absolute;
     display: none;
     width: 100%;
-    height: 100%;
     right: 0;
     z-index: 99;
 }
@@ -310,7 +316,6 @@ label {
 
 .blur-container {
     width: 60%;
-    height: 100%;
     background-color: rgba(0,0,0,0.2);
 }
 

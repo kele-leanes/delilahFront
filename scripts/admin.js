@@ -13,89 +13,31 @@ function closeSideMenu() {
 const dias = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
 const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
-async function getOrders() {
-    const orders = await fetch('https://delilah-resto-acamica.herokuapp.com/ordenes',
+async function getUsers() {
+    const users = await fetch('https://delilah-resto-acamica.herokuapp.com/usuarios',
     {
         method: 'GET',
         headers: { Authorization: `Bearer ${sessionStorage.getItem('token')}` },
         mode: 'cors',
         cache: 'default'
     }).then(response => response.json())
-    .then(data => data.map(order => dashboard.innerHTML +=
+    .then(data => data.map(user => dashboard.innerHTML +=
         `<div class="order">
-        <div class="order-field" style="background-color:${statusColor(order.order_status)};color:white">${order.order_status}</div>
-        <div class="order-field">#${order.order_id}</div>
-        <div class="order-field">${order.products.map(product => product.product_qty +'x'+ product.product_name.slice(0,4))}</div>
-        <div class="order-field">${paymentMethod(order.payment_method)} ${order.order_amount}</div>
-        <div class="order-field">${order.username}</div>
-        <div class="order-field">${order.address}</div>
-        <div class="order-field" onclick="detailsOrder(${order.order_id})">...</div>
+            <div class="order-field">${user.username}</div>
+            <div class="order-field">#${user.user_id}</div>
+            <div class="order-field">${user.first_name + ' ' + user.last_name}</div>
+            <div class="order-field">${user.phone_number}</div>
+            <div class="order-field">${user.address}</div>
+            <div class="order-field">...</div>
     </div>`
         ))
     .catch(error => error) 
-}
-
-getOrders()
-getFecha()
-
-function statusColor(status) {
-    let color;
-    switch(status) {
-        case 'New':
-            color = 'red';
-            break; 
-        case 'Confirmed':
-            color = 'orange';
-            break;     
-        case 'Shipped':
-            color = 'green';
-            break;
-        case 'Delivery':
-            color = 'cornflowerblue';
-            break;    
-        case 'Preparing':
-            color = 'gold';
-        }
-    return color
-}
-
-function paymentMethod(method){
-    if(method == 'Card'){
-        return '<i class="fas fa-credit-card"></i>'
-    } else {
-        return '<i class="fas fa-wallet"></i>'
-    }
 }
 
 function getFecha() {
     let today = new Date();
     let date = dias[today.getDay()] + ' ' + today.getDate() + ' de ' + (meses[today.getMonth()])
     dateCont.innerHTML = date;
-}
-
-async function detailsOrder(id) {
-    sideMenu.classList.toggle('shown');
-        const orders = await fetch(`https://delilah-resto-acamica.herokuapp.com/ordenes/${id}`,
-        {
-            method: 'GET',
-            headers: { Authorization: `Bearer ${sessionStorage.getItem('token')}` },
-            mode: 'cors',
-            cache: 'default'
-        }).then(response => response.json())
-        .then(data => data[0].products.map(product => productContainer.innerHTML +=
-            `<div class="product-list">
-                <div class="product">
-                    <div class="left-column">
-                        <div class="img-product">
-                            <img src="${product.image_url}" alt="">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-title">${product.product_name}</div>
-                            <div class="product-price">$${product.price}</div>
-                        </div>
-                    </div>    
-                </div>
-            </div>`))
 }
 
 function loadProduct(){
@@ -136,3 +78,6 @@ async function postProduct(){
     .then(response => response.json())
     .catch(error => console.log(error))
 }
+
+getUsers()
+getFecha()
